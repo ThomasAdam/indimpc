@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 
 import gobject
 import gtk
@@ -57,9 +57,9 @@ class IndiMPCConfiguration(object):
 			self.client_mode = self.config_parser.get("Client", "mode")
 			self.client_command = self.config_parser.get("Client", "command")
 		else:
-			self.client_name = "ncmpc++"
-			self.client_mode = "gnome-terminal"
-			self.client_command = "ncmpcpp"
+			self.client_name = "ncmpc"
+			self.client_mode = "standalone"
+			self.client_command = "/home/n6tadam/bin/lm.sh"
 	 
 	def set(self, section, key, value):
 		def is_exe(path):
@@ -235,7 +235,7 @@ class IndiMPCPreferencesDialog(gtk.Window):
 		self.config.set("Client", "mode", self.mode_entry.get_model()[self.mode_entry.get_active()][0])
 		self.config.set("Client", "command", self.command_entry.get_text())
 		self.config.write()
-		Popen(["indimpc"])
+		Popen(["indimpc.py"])
 		gtk.main_quit()
 
 class IndiMPDClient(object):
